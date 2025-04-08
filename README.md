@@ -1,112 +1,122 @@
 # Neural Network and Deep Learning Assignment (CS5720)
 
-## Overview
+This repository contains implementations for various neural network tasks as part of the CS5720 Neural Network and Deep Learning assignment. The assignment is divided into four questions:
 
-This repository contains implementations of four key tasks in Neural Network and Deep Learning for the course CS5720. The tasks include:
+- **Q1: Implementing a Basic Autoencoder**
+- **Q2: Implementing a Denoising Autoencoder**
+- **Q3: Implementing an RNN for Text Generation**
+- **Q4: Implementing an RNN for Sentiment Classification**
 
-1. **Basic Autoencoder**
-2. **Denoising Autoencoder**
-3. **RNN for Text Generation**
-4. **RNN for Sentiment Classification**
+## Table of Contents
+- [Q1: Basic Autoencoder](#q1-basic-autoencoder)
+- [Q2: Denoising Autoencoder](#q2-denoising-autoencoder)
+- [Q3: RNN for Text Generation](#q3-rnn-for-text-generation)
+- [Q4: Sentiment Classification Using RNN](#q4-sentiment-classification-using-rnn)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Future Improvements](#future-improvements)
 
----
+## Q1: Basic Autoencoder
+### Overview
+This task involves building a simple autoencoder using the MNIST dataset to compress and reconstruct images. The model is trained using binary cross-entropy loss.
 
-## Task 1: Basic Autoencoder
+### Files
+- `home_assignment3_q124.py`
 
-### Objective
+### Usage
+- Define an autoencoder model using `tf.keras.Sequential`.
+- Train the model on MNIST dataset.
+- Visualize the reconstruction of images using `matplotlib`.
 
-Build a simple autoencoder using fully connected (Dense) layers to reconstruct the MNIST dataset images.
-
-### Model Architecture
-
-- Encoder: Input layer (784), Hidden layer (32)
-- Decoder: Hidden layer (32), Output layer (784)
-- Loss Function: Binary Cross-Entropy
-- Optimizer: Adam
-
-### Results
-
-Visual comparison between original and reconstructed images showed good reconstruction quality. Latent dimension size experiments (16, 32, 64) were conducted.
-
----
-
-## Task 2: Denoising Autoencoder
-
-### Objective
-
-Train a denoising autoencoder to remove Gaussian noise from the MNIST dataset images.
-
-### Model Architecture
-
-- Encoder: Input layer (784), Hidden layer (32)
-- Decoder: Hidden layer (32), Output layer (784)
-- Loss Function: Binary Cross-Entropy
-- Optimizer: Adam
-
-### Results
-
-The model effectively removed noise from the images, preserving essential features. This technique is useful in **medical imaging** to enhance low-quality scans.
+### Observations
+- Compression quality depends on the size of the latent space.
+- Higher latent dimension size improves reconstruction but reduces compression efficiency.
 
 ---
 
-## Task 3: RNN for Text Generation
+## Q2: Denoising Autoencoder
+### Overview
+This task involves building a denoising autoencoder to remove noise from images. Gaussian noise is added to the MNIST dataset before training.
 
-### Objective
+### Files
+- `home_assignment3_q124.py`
 
-Train an LSTM-based Recurrent Neural Network to generate text from a corpus of Shakespeare's Sonnets.
+### Usage
+- Build an autoencoder model similar to Q1.
+- Train the model on noisy MNIST images.
+- Visualize denoising results using `matplotlib`.
 
-### Model Architecture
-
-- Embedding Layer: 256 units
-- LSTM Layer 1: 512 units
-- LSTM Layer 2: 512 units
-- Dense Output Layer with Softmax Activation
-- Loss Function: Sparse Categorical Cross-Entropy
-- Optimizer: Adam
-
-### Results
-
-Generated text was mostly random due to insufficient training. Increasing training epochs improves coherence.
+### Observations
+- The model effectively learns to remove noise and restore the original digit shapes.
 
 ---
 
-## Task 4: Sentiment Classification Using RNN
+## Q3: RNN for Text Generation
+### Overview
+This task involves building an LSTM-based RNN to generate Shakespearean text character-by-character.
 
-### Objective
+### Files
+- `home_assignment_q3.py`
 
-Train an LSTM-based Recurrent Neural Network to classify movie reviews from the IMDB dataset as Positive or Negative.
+### Usage
+- Train the model on a text dataset (Shakespeare Sonnets).
+- Save model weights using `model.save_weights()`.
+- Generate text by loading the model weights and using a text generation function.
 
-### Model Architecture
-
-- Embedding Layer: 128 units
-- LSTM Layer 1: 128 units
-- LSTM Layer 2: 128 units
-- Dense Output Layer with Sigmoid Activation
-- Loss Function: Binary Cross-Entropy
-- Optimizer: Adam
-
-### Results
-
-- Test Accuracy: **83.61%**
-- Classification Report and Confusion Matrix generated to evaluate performance.
-
-### Precision-Recall Tradeoff
-
-The model performs well but can be tuned further by adjusting the decision threshold or enhancing architecture.
+### Explanation of Temperature Scaling
+- Lower temperature values make the model more predictable and repetitive.
+- Higher temperature values make the model produce more creative and random text.
 
 ---
 
-## Submission
+## Q4: Sentiment Classification Using RNN
+### Overview
+This task involves building an LSTM-based model for binary sentiment classification using the IMDB dataset.
 
-- Ensure all code files are pushed to this repository.
-- Include a short demonstration video explaining the code and its functionality.
+### Files
+- `home_assignment3_q124.py`
+
+### Usage
+- Load and preprocess the IMDB dataset.
+- Train an LSTM model for sentiment analysis.
+- Generate classification report and confusion matrix.
+
+### Observations
+- The model successfully classifies text reviews as positive or negative.
 
 ---
 
-## Author
+## Installation
+1. Clone the repository:
+```bash
+$ git clone <repository-url>
+```
+2. Install dependencies:
+```bash
+$ pip install -r requirements.txt
+```
 
-- **Student Name:** Akash Pegada
-- **Course:** CS5720 Neural Network and Deep Learning
-- **University:** University of Central Missouri
+---
 
+## Usage
+Run the Python files for each question using:
+```bash
+$ python home_assignment3_q124.py  # For Q1, Q2, and Q4
+$ python home_assignment_q3.py      # For Q3
+```
+
+---
+
+## Future Improvements
+- Improve model accuracy by tuning hyperparameters.
+- Add more datasets for generalization.
+- Experiment with different architectures (e.g., GRU, Bidirectional LSTM).
+- Enhance the text generation model with advanced techniques such as Transformer models.
+
+---
+
+## License
+This project is part of the CS5720 Neural Network and Deep Learning course assignment.
+
+---
 
